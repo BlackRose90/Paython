@@ -1,28 +1,40 @@
 import solara
-from my_lib.area import find_area
+from solara.alias import rv
 
+Calculator_initial = """
+# Large
+## Smaller
 
-clicks = solara.reactive(0)
+## List items
+
+    * item 1
+    * item 2
+## Code highlight support
+```python
+code = "formatted" and "supports highlighting"
+```
+
+    """.strip()
 
 
 @solara.component
-def Page():
-    # Radio Button (Area, permiter)
-    # radio button (Square, Rectangle , circle)
-    #Circle: Radius
-    radius = 5
-    find_area(5)
-    # Square side:
-    #Rectangle: Width, Height
+def Calculator():
+  area = side * side
+side = 5
 
-    # Permiter is ""
-    # Area is ""
-    color = "green"
-    if clicks.value >= 5:
-        color = "red"
+def find_area(r):
+    PI = 3.124
+    PI * (r*r)
 
-    def increment():
-        clicks.value += 1
-        print("clicks", clicks)  # noqa
+def areaRectangle(a,b):
+    return (a*b)
+def perimeterRectangle(a,b):
+    return (2*(a+b))
+a=6
+b=5
+print("area = ", areaRectangle(a,b))
+print("perimeter = ", perimeterRectangle(a,b))
 
-    solara.Button(label=f"Clicked: {clicks}", on_click=increment, color=color)
+
+# create an alias of the Calculate component so Solara can find it
+Page = Calculator 
